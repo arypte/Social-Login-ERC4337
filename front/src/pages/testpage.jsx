@@ -4,8 +4,8 @@ import { Presets, Client } from 'userop';
 import t_abi from '../erc20abi.json';
 import n_abi from '../erc721abi.json';
 
-const token_add = '0x39a5Af9B84c13C3a14E94354e2899201a45f51D2';
-const nft_add = '0x18d0BEA129d017D024c26E4AF1a858E5572646a6';
+const token_add = '';
+const nft_add = '';
 
 const TestPage = () => {
   const signingKey = process.env.REACT_APP_SIGNING_KEY;
@@ -37,19 +37,17 @@ const TestPage = () => {
 
   const t_mint = async () => {
     try {
-      const destination_add = '0x29Ba2A9eC1E3e1D80AFd85830a741d8D53B0eeb6';
-      // destination_add : 토큰 받을 주소
+      const destination_add = '';
+      
       const mint = {
         to: token_add, // 컨트렉트 주소
         value: ethers.constants.Zero,
-        data: t_c.interface.encodeFunctionData('t_mint', [destination_add]), // 여기 들어감
+        data: t_c.interface.encodeFunctionData('t_mint', [destination_add]),
       };
 
       console.log('set token mint');
 
       builder.executeBatch([mint]);
-      // mint 에러남 , [mint] 에러남
-      // [] {} 차이체크
 
       console.log('set builder');
 
@@ -69,23 +67,20 @@ const TestPage = () => {
 
   const n_mint = async () => {
     try {
-      const destination_add = '0x97b54C834A814aaeEAa8C1DBeD2512a18138C8Ad';
-      // destination_add : NFT 받을 주소
+      const destination_add = '';
+      
       const mint = {
-        to: nft_add, // 컨트렉트 주소
+        to: nft_add, 
         value: ethers.constants.Zero,
-        data: n_c.interface.encodeFunctionData('mint', [destination_add]), // 여기 들어감
+        data: n_c.interface.encodeFunctionData('mint', [destination_add]), 
       };
 
       console.log('set nft mint');
 
       builder.executeBatch([mint]);
-      // mint 에러남 , [mint] 에러남
-      // [] {} 차이체크
 
       console.log('set builder');
 
-      // Send the user operation
       const client = await Client.init(rpcUrl);
       const res = await client.sendUserOperation(builder, {
         onBuild: (op) => console.log('Signed UserOperation :', op),
