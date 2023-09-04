@@ -14,7 +14,7 @@
 # SSL 인증서 파일 무시
 *.crt
 *.pem
-
+.env
 
 # misc
 
